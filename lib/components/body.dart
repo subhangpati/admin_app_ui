@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:admin_app_ui/constants.dart';
+import 'package:admin_app_ui/screens/BookingPage.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -9,7 +10,13 @@ class Body extends StatelessWidget {
       children: <Widget>[
         Expanded(child: Row(
           children: <Widget>[
-            Expanded(child: reusedContainer(icon: Icon(Icons.calendar_today , size: 45.0), label: 'Today' ,),),
+            Expanded(child: reusedContainer(icon: Icon(Icons.calendar_today , size: 45.0), label: 'Today' , ontap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => bookingPage()),
+              );
+
+            },),),
             Expanded(child: reusedContainer(icon: Icon(Icons.calendar_today , size: 45.0), label: 'All' ,),)
           ],
         ),),
