@@ -4,10 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:admin_app_ui/components/body.dart';
 import 'package:admin_app_ui/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:admin_app_ui/components/bottomBarIcons.dart';
+import 'package:admin_app_ui/screens/addRemovePackage.dart';
 
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
 
+  @override
+  _HomepageState createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
         return Scaffold(
@@ -24,7 +31,9 @@ class Homepage extends StatelessWidget {
                 ),
                 sideBarMenuItems(label: 'Bookings', imageData: 'event_note-24px.svg', press: (){},),
                 sideBarMenuItems(label: 'Booking Calander', imageData: 'date_range-24px.svg', press: (){},),
-                sideBarMenuItems(label: 'Add/Remove Package', imageData: 'box.svg', press: (){},),
+                sideBarMenuItems(label: 'Add/Remove Package', imageData: 'box.svg', press: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>addRemovePackage()));
+                },),
                 sideBarMenuItems(label: 'Add/Remove Services', imageData: 'service.svg', press: (){},),
                 sideBarMenuItems(label: 'Add/Remove Sliders', imageData: 'slider-tool.svg', press: (){},),
                 sideBarMenuItems(label: 'Time Management', imageData: 'clock.svg', press: (){},),
@@ -48,7 +57,6 @@ class Homepage extends StatelessWidget {
       ),
     );
   }
-
 }
 
 
@@ -75,24 +83,3 @@ class sideBarMenuItems extends StatelessWidget {
     );
   }
 }
-
-// The following is the abstracted code for the bottom nav icons:
-
-class bottom_nav_icons extends StatelessWidget {
-  bottom_nav_icons({this.icons , this.on_Press});
-  final Icon icons ;
-  final Function on_Press ;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: on_Press,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-        icons,
-            ],),
-    );
-  }
-}
-
-
