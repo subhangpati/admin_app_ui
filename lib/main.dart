@@ -1,6 +1,5 @@
-import 'file:///C:/Users/Dell/AndroidStudioProjects/admin_app_ui/lib/screens/homepage.dart';
+import 'screens/homepage.dart';
 import 'package:flutter/material.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -14,9 +13,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // primaryColor: Theme.of(context).primaryColor.apply(primar)
-      ),
-      home:Homepage(),
+          // primaryColor: Theme.of(context).primaryColor.apply(primar)
+          ),
+      home: Homepage(),
     );
   }
 }
