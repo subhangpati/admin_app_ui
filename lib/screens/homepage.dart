@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:admin_app_ui/components/bottomBarIcons.dart';
 import 'package:admin_app_ui/screens/addRemovePackage.dart';
 import 'package:admin_app_ui/screens/TimeManagement.dart';
+import 'package:admin_app_ui/screens/addService.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -79,17 +80,23 @@ class _HomepageState extends State<Homepage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             bottom_nav_icons(
-                icons: Icon(
-              Icons.note_add,
-              size: 35.0,
-              color: Colors.white,
-            )),
+              icons: Icon(
+                Icons.note_add,
+                size: 35.0,
+                color: Colors.white,
+              ),
+              on_Press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => addServicePage()));
+              },
+            ),
             bottom_nav_icons(
-                icons: Icon(
-              Icons.home,
-              size: 35.0,
-              color: Colors.white,
-            )),
+              icons: Icon(
+                Icons.home,
+                size: 35.0,
+                color: Colors.white,
+              ),
+            ),
             bottom_nav_icons(
               icons: Icon(
                 Icons.access_time,
