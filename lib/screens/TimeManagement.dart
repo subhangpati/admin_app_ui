@@ -14,20 +14,17 @@ class _timeManagementState extends State<timeManagement> {
   bool Value5 = false;
   bool Value6 = false;
   bool Value7 = false;
-  // final String Title ;
-  //
-  // var Value;
-  // _timeManagementState({this.Title , this.Value});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
+                  height: MediaQuery.of(context).size.height / 4,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -50,7 +47,7 @@ class _timeManagementState extends State<timeManagement> {
                     child: Row(
                       children: <Widget>[
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Text('Opening hours ',
                                 style: TextStyle(fontSize: 17.0)),
@@ -60,6 +57,7 @@ class _timeManagementState extends State<timeManagement> {
                           ],
                         ),
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             SizedBox(
                               height: 50.0,
@@ -87,13 +85,17 @@ class _timeManagementState extends State<timeManagement> {
                 ),
                 SizedBox(
                   height: 15.0,
-                ),
+                ), //Todo : Adding another list of contom time has been left due to complexity issues.
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(20.0),
-                        topLeft: Radius.circular(20.0)),
+                        topLeft: Radius.circular(20.0),
+                      bottomLeft: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
+                    ),
+
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black,
@@ -108,13 +110,20 @@ class _timeManagementState extends State<timeManagement> {
                   ),
                   child: Column(
                     children: <Widget>[
-                      buildSwitchListTile(Title: "Monday", Value: Value1),
-                      buildSwitchListTile(Title: "Tuesday", Value: Value2),
-                      buildSwitchListTile(Title: "Wednesday", Value: Value3),
-                      buildSwitchListTile(Title: "Thursday", Value: Value4),
-                      buildSwitchListTile(Title: "Friday", Value: Value5),
-                      buildSwitchListTile(Title: "Saturday", Value: Value6),
-                      buildSwitchListTile(Title: "Sunday", Value: Value7),
+                      buildSwitchListTile(Title: "Monday", Value: Value1,
+                          onChanged: (val) => setState(() => Value1 = val)),
+                      buildSwitchListTile(Title: "Tuesday", Value: Value2,
+                          onChanged: (val) => setState(() => Value2 = val)),
+                      buildSwitchListTile(Title: "Wednesday", Value:  Value3,
+                          onChanged: (val) => setState(() => Value3 = val)),
+                      buildSwitchListTile(Title: "Thursday", Value: Value4,
+                          onChanged: (val) => setState(() => Value4 = val)),
+                      buildSwitchListTile(Title: "Friday", Value: Value5,
+                          onChanged: (val) => setState(() => Value5 = val)),
+                      buildSwitchListTile(Title: "Saturday", Value: Value6,
+                          onChanged: (val) => setState(() => Value6 = val)),
+                      buildSwitchListTile(Title: "Sunday", Value: Value7,
+                          onChanged: (val) => setState(() => Value7 = val)),
                     ],
                   ),
                 ),
@@ -124,13 +133,15 @@ class _timeManagementState extends State<timeManagement> {
     );
   }
 
-  SwitchListTile buildSwitchListTile({String Title, bool Value}) {
+  SwitchListTile buildSwitchListTile({
+    String Title,
+    bool Value,
+    void Function(bool) onChanged,
+  }) {
     return SwitchListTile(
       title: Text(Title),
       value: Value,
-      onChanged: (bool value) => setState(() {
-        Value = value;
-      }),
+      onChanged: onChanged,
     );
   }
 }

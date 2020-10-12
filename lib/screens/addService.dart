@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_app_ui/components/navigation_bar.dart';
 
+// ignore: camel_case_types
 class addServicePage extends StatefulWidget {
   @override
   _addServicePageState createState() => _addServicePageState();
 }
 
+// ignore: camel_case_types
 class _addServicePageState extends State<addServicePage> {
   @override
   Widget build(BuildContext context) {
@@ -63,8 +65,8 @@ class _addServicePageState extends State<addServicePage> {
                           TextContainer(),
                           Container(
                             padding: EdgeInsets.all(5.0),
-                            height: 50,
-                            width: 300,
+                            height: 45,
+                            width: 275,
                             child: Center(
                               child: TextFormField(
                                 decoration: InputDecoration(
@@ -77,19 +79,62 @@ class _addServicePageState extends State<addServicePage> {
                               ),
                             ),
                           ),
+                          SizedBox(
+                            height: 13.0,
+                          ),
+                          ListTile(
+                            title: Text('Added'),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            trailing: Icon(Icons.arrow_forward_ios),
+                            onTap: () {},
+                          ),
                         ],
                       ),
                       SizedBox(
                         height: 14.0,
                       ),
-                      Container(
-                        decoration: BoxDecoration(),
-                        child: ListTile(
-                          title: Text('Added'),
-                        ),
-                      ),
                     ],
                   ),
+                ),
+              ),
+              Container(
+                height: 140.0,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 2,
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                          ),
+                          child: Text(
+                            'CLEAR',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                        flex: 3,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            decoration: BoxDecoration(color: Colors.green),
+                            child: Text(
+                              'NEXT',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 15.0),
+                            ),
+                          ),
+                        ))
+                  ],
                 ),
               ),
             ],
@@ -105,8 +150,8 @@ class TextContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(5.0),
-      height: 50,
-      width: 300,
+      height: 45,
+      width: 275,
       child: Center(
         child: TextFormField(
           decoration: InputDecoration(

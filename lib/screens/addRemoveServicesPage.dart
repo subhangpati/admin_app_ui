@@ -1,7 +1,6 @@
 import 'package:admin_app_ui/components/bottomBarIcons.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_app_ui/components/navigation_bar.dart';
-import '../screens/homepage.dart';
 class AddServices extends StatefulWidget {
   @override
   _AddServicesState createState() => _AddServicesState();
@@ -64,6 +63,8 @@ class _AddServicesState extends State<AddServices> {
                   height: 15.0,
                 ),
                 ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       return Container(
@@ -76,7 +77,7 @@ class _AddServicesState extends State<AddServices> {
                               Container(
                                   height: 100.0,
                                   width: 100.0,
-                                  child: Image.asset("images/salon.jpeg")),
+                                  child: Image.asset("images/smsample.jpeg")),
                               Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -117,28 +118,28 @@ class _AddServicesState extends State<AddServices> {
                             ]),
                       );
                     }),
-                Expanded(
-                  child: Align(
-                    alignment: FractionalOffset.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 100.0,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF2E577B),
-                            ),
-                            child: Center(
-                                child: Text(
-                              'ADD SERVICES',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                          )),
-                    ),
-                  ),
-                ),
+                // Expanded(
+                //   child: Align(
+                //     alignment: FractionalOffset.bottomCenter,
+                //     child: Padding(
+                //       padding: EdgeInsets.only(bottom: 10.0),
+                //       child: InkWell(
+                //           onTap: () {},
+                //           child: Container(
+                //             height: 100.0,
+                //             width: double.infinity,
+                //             decoration: BoxDecoration(
+                //               color: Color(0xFF2E577B),
+                //             ),
+                //             child: Center(
+                //                 child: Text(
+                //               'ADD SERVICES',
+                //               style: TextStyle(color: Colors.white),
+                //             )),
+                //           )),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           

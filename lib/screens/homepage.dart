@@ -8,6 +8,7 @@ import 'package:admin_app_ui/components/bottomBarIcons.dart';
 import 'package:admin_app_ui/screens/addRemovePackage.dart';
 import 'package:admin_app_ui/screens/TimeManagement.dart';
 import 'package:admin_app_ui/screens/addService.dart';
+import 'package:admin_app_ui/screens/addRemoveServicesPage.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -52,7 +53,12 @@ class _HomepageState extends State<Homepage> {
             sideBarMenuItems(
               label: 'Add/Remove Services',
               imageData: 'service.svg',
-              press: () {},
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddServices()));
+              },
             ),
             sideBarMenuItems(
               label: 'Add/Remove Sliders',
