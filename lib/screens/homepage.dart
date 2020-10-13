@@ -9,6 +9,7 @@ import 'package:admin_app_ui/screens/addRemovePackage.dart';
 import 'package:admin_app_ui/screens/TimeManagement.dart';
 import 'package:admin_app_ui/screens/addService.dart';
 import 'package:admin_app_ui/screens/addRemoveServicesPage.dart';
+import 'package:admin_app_ui/screens/AddRemoveSliders.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -54,16 +55,19 @@ class _HomepageState extends State<Homepage> {
               label: 'Add/Remove Services',
               imageData: 'service.svg',
               press: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AddService()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddService()));
               },
             ),
             sideBarMenuItems(
               label: 'Add/Remove Sliders',
               imageData: 'slider-tool.svg',
-              press: () {},
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddRemoveSliders()));
+              },
             ),
             sideBarMenuItems(
               label: 'Time Management',
