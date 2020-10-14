@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:admin_app_ui/constants.dart';
+import 'package:admin_app_ui/components/bottomBarIcons.dart';
 
 class timeManagement extends StatefulWidget {
   @override
@@ -128,6 +130,25 @@ class _timeManagementState extends State<timeManagement> {
                   ),
                 ),
               ]),
+        ),
+        bottomNavigationBar: Container(
+          margin: const EdgeInsets.only(top: 1.0),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          height: 60.0,
+          color: kBarColor,
+          child: Center(
+            child: bottom_nav_icons(
+                icons: Icon(
+                  Icons.home,
+                  size: 35.0,
+                  color: Colors.white,
+                ),
+                on_Press: (){
+                  Navigator.pop(context);
+                }
+            ),
+
+          ),
         ),
       ),
     );
