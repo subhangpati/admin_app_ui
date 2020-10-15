@@ -1,3 +1,4 @@
+import 'package:admin_app_ui/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_app_ui/components/navigation_bar.dart';
@@ -163,6 +164,7 @@ class _addServicePageState extends State<addServicePage> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomHomeNavButton(),
     );
   }
 }

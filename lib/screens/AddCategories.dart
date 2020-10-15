@@ -156,24 +156,8 @@ class _CreatePackageState extends State<CreatePackage> {
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.only(top: 1.0),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        height: 60.0,
-        color: kBarColor,
-        child: Center(
-          child: bottom_nav_icons(
-              icons: Icon(
-                Icons.home,
-                size: 35.0,
-                color: Colors.white,
-              ),
-              on_Press: (){
-                Navigator.pop(context);
-              }
-          ),
-        ),
-      ),
+      bottomNavigationBar: BottomHomeNavButton(),
     );
   }
 }
+
