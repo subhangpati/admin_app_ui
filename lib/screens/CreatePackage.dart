@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:admin_app_ui/constants.dart';
 import 'package:admin_app_ui/components/bottomBarIcons.dart';
 
-
 class CreatePackage extends StatefulWidget {
   @override
   _CreatePackageState createState() => _CreatePackageState();
@@ -12,23 +11,32 @@ class _CreatePackageState extends State<CreatePackage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
-    leading: IconButton(icon: Icon(Icons.arrow_back_ios),color: Colors.white,onPressed: (){
-    Navigator.pop(context);
-    }),
-    title: Text('Create Package ',style: TextStyle(
-    color: Colors.white,
-    ),),
-    backgroundColor: kBarColor,
-    actions: <Widget>[
-    FlatButton(
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(15.0),
-    ),
-    onPressed: (){},
-    child: Text('SAVE' , style: TextStyle(color: Color(0xFF31AF39) , fontSize: 20),))
-    ],
-    ),
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        title: Text(
+          'Create Package ',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: kBarColor,
+        actions: <Widget>[
+          FlatButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              onPressed: () {},
+              child: Text(
+                'SAVE',
+                style: TextStyle(color: Color(0xFF31AF39), fontSize: 20),
+              ))
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -36,9 +44,11 @@ class _CreatePackageState extends State<CreatePackage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Center(child: Text('Name ' , style: TextStyle(
-                fontSize: 18.0,
-              ))),
+              Center(
+                  child: Text('Name ',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ))),
               Container(
                 padding: EdgeInsets.all(5.0),
                 height: 45,
@@ -48,8 +58,7 @@ class _CreatePackageState extends State<CreatePackage> {
                     decoration: InputDecoration(
                         labelText: 'New Package ',
                         border: OutlineInputBorder(
-                          borderRadius:
-                          new BorderRadius.circular(25.0),
+                          borderRadius: new BorderRadius.circular(25.0),
                         ),
                         hintText: 'Enter a search term'),
                   ),
@@ -77,8 +86,7 @@ class _CreatePackageState extends State<CreatePackage> {
                     decoration: BoxDecoration(
                       color: Color(0xFF31AF39),
                       shape: BoxShape.rectangle,
-                      borderRadius:
-                      BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: Center(
                       child: Text(
@@ -107,13 +115,10 @@ class _CreatePackageState extends State<CreatePackage> {
                   decoration: BoxDecoration(
                     color: Color(0xFF2E577B),
                     shape: BoxShape.rectangle,
-                    borderRadius:
-                    BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: InkWell(
-                    onTap: (){
-
-                    },
+                    onTap: () {},
                     child: Center(
                       child: Text(
                         "Add Category ",
@@ -130,24 +135,23 @@ class _CreatePackageState extends State<CreatePackage> {
           ),
         ],
       ),
-    bottomNavigationBar: Container(
-    margin: const EdgeInsets.only(top: 1.0),
-    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-    height: 60.0,
-    color: kBarColor,
-    child: Center(
-    child: bottom_nav_icons(
-    icons: Icon(
-    Icons.home,
-    size: 35.0,
-    color: Colors.white,
-    ),
-    on_Press: (){
-    Navigator.pop(context);
-    }
-    ),
-    ),
-    ),
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.only(top: 1.0),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        height: 60.0,
+        color: kBarColor,
+        child: Center(
+          child: bottom_nav_icons(
+              icons: Icon(
+                Icons.home,
+                size: 35.0,
+                color: Colors.white,
+              ),
+              on_Press: () {
+                Navigator.pop(context);
+              }),
+        ),
+      ),
     );
   }
 }
