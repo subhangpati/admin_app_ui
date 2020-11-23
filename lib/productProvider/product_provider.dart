@@ -1,8 +1,8 @@
 import 'package:admin_app_ui/services/firestore_service.dart';
+import 'package:admin_app_ui/model/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class Product extends ChangeNotifier{
+class ProductProvider extends ChangeNotifier{
   final firestoreService = FirestoreService();
 
   String _title ;
@@ -43,5 +43,21 @@ class Product extends ChangeNotifier{
   changeTime(String value){
     _time : int.parse(value);
     notifyListeners();
+  }
+
+  saveProduct(){
+    if (_title == null) {
+      var newProduct = Product(title: title , time: time.toString() , details: details , currentPrice: currentPrice.toString() , previousPrice: previousPrice.toString() ) ;
+      firestoreService.saveProduct(newProduct);
+    } else {
+      //Update
+      var updatedProduct =
+      Product(title: title , time: time.toString() , details: details , currentPrice: currentPrice.toString() , previousPrice: previousPrice.toString() ) ;
+      firestoreService.saveProduct(updatedProduct);
+    }
+  }
+
+  removeProduct(String title){
+    firestoreService.removeProduct(title);
   }
 }
