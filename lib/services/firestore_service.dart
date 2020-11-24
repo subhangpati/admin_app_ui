@@ -5,12 +5,11 @@ class FirestoreService {
   FirebaseFirestore _db = FirebaseFirestore.instance;
   String collection;
   String PackageName;
-  String CollectionName = "services/collection/PackageName";
 
 
   //GET PACKAGES
   Stream<List<Product>> getProduct(){
-    return FirebaseFirestore.instance.collection(CollectionName).snapshots().map((snapshot) => snapshot.docs.map((document) => Product.fromFirestore(document.data())).toList());
+    return FirebaseFirestore.instance.collection( "services/collection/PackageName").snapshots().map((snapshot) => snapshot.docs.map((document) => Product.fromFirestore(document.data())).toList());
   }
 
   //DELETE PACKAGE
