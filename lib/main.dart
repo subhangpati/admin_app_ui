@@ -1,7 +1,7 @@
+import 'package:admin_app_ui/AdvanceScreens/Services.dart';
 import 'package:admin_app_ui/services/firestore_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_app_ui/model/product_model.dart';
 
@@ -18,8 +18,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<FirestoreService>(
+          create: (context) => FirestoreService(),
+        ),
         ChangeNotifierProvider(create: (context) => Product()),
-        StreamProvider(create: (context)=> FirestoreService().getProduct()),
+        // StreamProvider(create: (context)=> FirestoreService().getStreamServices()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             // primaryColor: Theme.of(context).primaryColor.apply(primar)
             ),
-        home: Homepage(),
+        home: Services(),
       ),
     );
   }
