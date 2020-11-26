@@ -1,5 +1,6 @@
 import 'package:admin_app_ui/AdvanceScreens/Services.dart';
 import 'package:admin_app_ui/package/ClassicPackage.dart';
+import 'package:admin_app_ui/productProvider/product_provider.dart';
 import 'package:flutter/material.dart';
 
 
@@ -7,8 +8,10 @@ Route<dynamic> serviceRoutes(RouteSettings settings) {
   switch (settings.name) {
     case '/':
       return MaterialPageRoute(builder: (context) => Services());
+
       break;
     case 'ClassicPackage':
+      ProductProvider().package = 'ClassicPackage';
       return MaterialPageRoute(builder: (context) => ClassicPackage());
       break;
     // case 'DeTanBleach':

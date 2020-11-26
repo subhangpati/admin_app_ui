@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class ProductProvider extends ChangeNotifier{
   final firestoreService = FirestoreService();
 
+  String package;
+  ProductProvider({this.package});
   String _title ;
   String _details;
   int _currentPrice;
@@ -48,16 +50,18 @@ class ProductProvider extends ChangeNotifier{
   saveProduct(){
     if (_title == null) {
       var newProduct = Product(title: title , time: time.toString() , details: details , currentPrice: currentPrice.toString() , previousPrice: previousPrice.toString() ) ;
-      firestoreService.saveProduct(newProduct);
-    } else {
-      //Update
+      firestoreService.saveProduct(product: newProduct);
+    }
+    //Update
+    else
+      {
       var updatedProduct =
       Product(title: title , time: time.toString() , details: details , currentPrice: currentPrice.toString() , previousPrice: previousPrice.toString() ) ;
-      firestoreService.saveProduct(updatedProduct);
+      firestoreService.saveProduct(product: updatedProduct);
     }
   }
 
-  removeProduct(String title){
-    firestoreService.removeProduct(title);
+  removeProduct(String title ,String subPackage){
+    firestoreService.removeProduct(title: title);
   }
 }

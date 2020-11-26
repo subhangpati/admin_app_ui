@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 
-List<String> subPackage = [
+List<String> subPackageHeading = [
   'Best Deal',
   'Pre Bridal Package',
   'Premium Package',
@@ -75,7 +75,7 @@ class _ClassicPackageState extends State<ClassicPackage> {
                   child: Container(
                     height: 25,
                     child: ListView.builder(
-                      itemCount: subPackage.length,
+                      itemCount: subPackageHeading.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return GestureDetector(
@@ -93,7 +93,7 @@ class _ClassicPackageState extends State<ClassicPackage> {
                             child: Column(
                               children: [
                                 Text(
-                                  subPackage[index],
+                                  subPackageHeading[index],
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: selectedIndex == index ? 17 : 15,
@@ -342,15 +342,19 @@ class _ClassicPackageState extends State<ClassicPackage> {
     switch (selectedIndex) {
       case 0:
         packageData.subPackage = 'classic';
+        ProductProvider().package = 'classic';
         break;
       case 1:
         packageData.subPackage = 'pre-BridalPackages';
+        ProductProvider().package = 'pre-BridalPackages';
         break;
       case 2:
         packageData.subPackage = 'premiumPackages';
+        ProductProvider().package = 'premiumPackages';
         break;
       case 3:
         packageData.subPackage = 'FacialWaxingCombo';
+        ProductProvider().package = 'FacialWaxingCombo';
         break;
     }
   }
