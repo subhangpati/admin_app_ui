@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'components/bottomBarIcons.dart';
+
 const kBarColor = Color(0xFF2E2E2E);
 const kBackgroundColor = Color(0xFFFAFAFA);
 
-
-const kDeafaultPadding = 20.0;
-
+const kDefaultPadding = 20.0;
 
 class BottomHomeNavButton extends StatelessWidget {
   const BottomHomeNavButton({
@@ -17,7 +17,7 @@ class BottomHomeNavButton extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 1.0),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      height: 60.0,
+      height: 70.0,
       color: kBarColor,
       child: Center(
         child: bottom_nav_icons(
@@ -26,21 +26,18 @@ class BottomHomeNavButton extends StatelessWidget {
               size: 35.0,
               color: Colors.white,
             ),
-            on_Press: (){
+            on_Press: () {
               Navigator.pop(context);
-            }
-        ),
+            }),
       ),
     );
   }
 }
 
-
-
 class BottomNextUpdateContainer extends StatelessWidget {
   BottomNextUpdateContainer({this.onPressed});
 
-  final Function onPressed ;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +55,9 @@ class BottomNextUpdateContainer extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                       color: Colors.blue,
-                      borderRadius: BorderRadius.only(topLeft:  Radius.circular(5.0), bottomLeft: Radius.circular(5.0))
-                  ),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5.0),
+                          bottomLeft: Radius.circular(5.0))),
                   child: Center(
                     child: Text(
                       'CLEAR',
@@ -78,15 +76,15 @@ class BottomNextUpdateContainer extends StatelessWidget {
                   onTap: onPressed,
                   child: Container(
                     height: 50,
-                    decoration: BoxDecoration(color: Colors.green,
-                        borderRadius: BorderRadius.only(topRight:  Radius.circular(5.0), bottomRight: Radius.circular(5.0))
-                    ),
-
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(5.0),
+                            bottomRight: Radius.circular(5.0))),
                     child: Center(
                       child: Text(
                         'NEXT',
-                        style: TextStyle(
-                            color: Colors.white, fontSize: 25.0),
+                        style: TextStyle(color: Colors.white, fontSize: 25.0),
                       ),
                     ),
                   ),

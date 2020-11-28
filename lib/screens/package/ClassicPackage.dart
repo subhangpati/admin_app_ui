@@ -1,11 +1,10 @@
-import 'package:admin_app_ui/productProvider/product_provider.dart';
+import 'package:admin_app_ui/productProvider/EditItems.dart';
 import 'package:admin_app_ui/screens/addService.dart';
 import 'package:admin_app_ui/services/firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
 
 List<String> subPackageHeading = [
   'Best Deal',
@@ -14,6 +13,7 @@ List<String> subPackageHeading = [
   'Facial+Wax Combo'
 ];
 FirestoreService packageData;
+EditItems editItem;
 double currentPageValue = 0;
 int selectedIndex = 0;
 PageController _pageController = PageController(
@@ -29,6 +29,7 @@ class _ClassicPackageState extends State<ClassicPackage> {
   @override
   Widget build(BuildContext context) {
     packageData = Provider.of<FirestoreService>(context);
+    editItem = Provider.of<EditItems>(context);
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.grey),
@@ -54,8 +55,8 @@ class _ClassicPackageState extends State<ClassicPackage> {
               color: Colors.black54,
             ),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => addServicePage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => addServicePage()));
             },
           ),
         ],
@@ -131,7 +132,7 @@ class _ClassicPackageState extends State<ClassicPackage> {
                         itemCount: snapshot.data.documents.length,
                         itemBuilder: (BuildContext context, index) {
                           DocumentSnapshot package =
-                          snapshot.data.documents[index];
+                              snapshot.data.documents[index];
                           return Container(
                             height: MediaQuery.of(context).size.height / 3,
                             width: MediaQuery.of(context).size.width,
@@ -150,13 +151,13 @@ class _ClassicPackageState extends State<ClassicPackage> {
                                       flex: 1,
                                       child: Container(
                                         width:
-                                        MediaQuery.of(context).size.width,
+                                            MediaQuery.of(context).size.width,
                                         child: Row(
                                           children: [
                                             Container(
                                               width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
+                                                      .size
+                                                      .width /
                                                   3,
                                               child: Image(
                                                 image: NetworkImage(
@@ -165,8 +166,8 @@ class _ClassicPackageState extends State<ClassicPackage> {
                                             ),
                                             Container(
                                               width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
+                                                      .size
+                                                      .width /
                                                   3,
                                               padding: EdgeInsets.only(
                                                   top: 10,
@@ -175,24 +176,24 @@ class _ClassicPackageState extends State<ClassicPackage> {
                                                   right: 20),
                                               child: Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceAround,
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     package['title'],
                                                     style: TextStyle(
                                                       fontSize: 18,
                                                       fontWeight:
-                                                      FontWeight.w800,
+                                                          FontWeight.w800,
                                                       fontFamily: 'inter',
                                                     ),
                                                   ),
                                                   Row(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       Text(
                                                         '₹ ${package['currentPrice']}',
@@ -205,8 +206,8 @@ class _ClassicPackageState extends State<ClassicPackage> {
                                                             color: Colors.red,
                                                             fontSize: 15,
                                                             decoration:
-                                                            TextDecoration
-                                                                .lineThrough),
+                                                                TextDecoration
+                                                                    .lineThrough),
                                                       )
                                                     ],
                                                   ),
@@ -220,19 +221,20 @@ class _ClassicPackageState extends State<ClassicPackage> {
                                                 color: Color(0xffff7d85),
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        20)),
+                                                        BorderRadius.circular(
+                                                            20)),
                                                 onPressed: () {
                                                   productSelected(
                                                     title: package['title'],
                                                     currentPrice:
-                                                    package['currentPrice'],
+                                                        package['currentPrice'],
                                                     previousPrice: package[
-                                                    'previousPrice'],
+                                                        'previousPrice'],
                                                     time: package['time'],
+                                                    details: package['details'],
                                                   );
                                                 },
-                                                child: Text("ADD"),
+                                                child: Text("Edit"),
                                               ),
                                             ),
                                           ],
@@ -244,13 +246,13 @@ class _ClassicPackageState extends State<ClassicPackage> {
                                       flex: 1,
                                       child: Container(
                                         width:
-                                        MediaQuery.of(context).size.width,
+                                            MediaQuery.of(context).size.width,
                                         padding: EdgeInsets.all(8),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
                                             Text(
                                               'Package Details',
@@ -289,30 +291,40 @@ class _ClassicPackageState extends State<ClassicPackage> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-
-        },
-        label: Text('PROCEED TO CART'),
-        icon: Icon(FontAwesomeIcons.arrowCircleRight),
+        onPressed: () {},
+        label: Text('Add new Packages'),
+        icon: Icon(FontAwesomeIcons.plus),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
-  void productSelected({String title, int currentPrice, previousPrice, time}) {
+  void productSelected({
+    String title,
+    details,
+    int currentPrice,
+    previousPrice,
+    time,
+  }) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text("Confirm"),
-            content: const Text("Do you want to add this item in cart?"),
+            content: const Text("Do you want to Edit this Item?"),
             actions: <Widget>[
               FlatButton(
                   onPressed: () {
+                    editItem.printingShit();
                     Navigator.of(context).pop(true);
                     print(title);
-                    Provider.of<ProductProvider>(context, listen: false)
-                        .saveProduct();
+                    editItem.editItems(
+                      title: title,
+                      details: details,
+                      time: time,
+                      currentPrice: currentPrice,
+                      previousPrice: previousPrice,
+                    );
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -328,7 +340,7 @@ class _ClassicPackageState extends State<ClassicPackage> {
                           );
                         });
                   },
-                  child: const Text("ADD")),
+                  child: const Text("Yes")),
               FlatButton(
                 onPressed: () => Navigator.of(context).pop(false),
                 child: const Text("CANCEL"),
@@ -342,19 +354,19 @@ class _ClassicPackageState extends State<ClassicPackage> {
     switch (selectedIndex) {
       case 0:
         packageData.subPackage = 'classic';
-        ProductProvider().package = 'classic';
+        FirestoreService().subPackage = 'classic';
         break;
       case 1:
         packageData.subPackage = 'pre-BridalPackages';
-        ProductProvider().package = 'pre-BridalPackages';
+        FirestoreService().subPackage = 'pre-BridalPackages';
         break;
       case 2:
         packageData.subPackage = 'premiumPackages';
-        ProductProvider().package = 'premiumPackages';
+        FirestoreService().subPackage = 'premiumPackages';
         break;
       case 3:
         packageData.subPackage = 'FacialWaxingCombo';
-        ProductProvider().package = 'FacialWaxingCombo';
+        FirestoreService().subPackage = 'FacialWaxingCombo';
         break;
     }
   }

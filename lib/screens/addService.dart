@@ -1,7 +1,12 @@
 import 'package:admin_app_ui/constants.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:admin_app_ui/productProvider/EditItems.dart';
 import 'package:flutter/material.dart';
-import 'package:admin_app_ui/components/navigation_bar.dart';
+import 'package:provider/provider.dart';
+
+import '../productProvider/product_provider.dart';
+
+EditItems editItem;
+String value1;
 
 // ignore: camel_case_types
 class addServicePage extends StatefulWidget {
@@ -9,183 +14,158 @@ class addServicePage extends StatefulWidget {
   _addServicePageState createState() => _addServicePageState();
 }
 
+final _titleController = TextEditingController();
+
 // ignore: camel_case_types
 class _addServicePageState extends State<addServicePage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 3,
-                child: Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Row(
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Name',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                          Text(
-                            'Price',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                          Text(
-                            'Discount',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                          Text(
-                            'Duration',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1.0,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 15.0,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          TextContainer(),
-                          TextContainer(),
-                          TextContainer(),
-                          Container(
-                            padding: EdgeInsets.all(5.0),
-                            height: 45,
-                            width: 275,
-                            child: Center(
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                    labelText: 'Enter Name',
-                                    border: OutlineInputBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(25.0),
-                                    ),
-                                    hintText: 'Enter a search term'),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 13.0,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 40.0),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFF2E577B),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: InkWell(
-                  child: ListTile(
-                    title: Text('Added : '),
-                    trailing: Icon(Icons.arrow_forward_ios, color: Colors.white,),
-                  ),
-                ),
-              ),
-              SizedBox(height: 275.0),
-              Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Container(
-                  height: 50.0,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 2,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.only(topLeft:  Radius.circular(5.0), bottomLeft: Radius.circular(5.0))
-                            ),
-                            child: Center(
-                              child: Text(
-                                'CLEAR',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                          flex: 3,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 50,
-                              decoration: BoxDecoration(color: Colors.green,
-                                  borderRadius: BorderRadius.only(topRight:  Radius.circular(5.0), bottomRight: Radius.circular(5.0))
-                              ),
+  void initState() {
+    _titleController.text = '';
+    super.initState();
+  }
 
-                              child: Center(
-                                child: Text(
-                                  'NEXT',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 25.0),
-                                ),
-                              ),
-                            ),
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-            ],
+  @override
+  Widget build(BuildContext context) {
+    editItem = Provider.of<EditItems>(context);
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.grey),
+        backgroundColor: Color(0xffFFFAFA),
+        elevation: 0,
+        leading: InkWell(
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black54,
+          ),
+          onTap: () => Navigator.pop(context),
+        ),
+        title: Text(
+          'ADD / EDIT PACKAGES',
+          style: TextStyle(
+            color: Colors.black,
           ),
         ),
       ),
-      bottomNavigationBar: BottomHomeNavButton(),
-    );
-  }
-}
-
-class TextContainer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(5.0),
-      height: 45,
-      width: 275,
-      child: Center(
-        child: TextFormField(
-          decoration: InputDecoration(
-              labelText: 'Enter Name',
-              border: OutlineInputBorder(
-                borderRadius: new BorderRadius.circular(25.0),
+      body: Container(
+        padding: EdgeInsets.all(18),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Title',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 3 / 5,
+                    child: TextFormField(
+                      controller: _titleController,
+                      onChanged: (value) {
+                        value1 = value;
+                        print('$value');
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              hintText: 'Enter a search term'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Details',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 3 / 5,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Current Price',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 3 / 5,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Previous Price',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 3 / 5,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Time',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 3 / 5,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            RaisedButton(
+              onPressed: () {
+                ProductProvider().changeTitle(value: value1);
+                ProductProvider().saveProduct();
+              },
+              child: Text('Send Data'),
+            )
+          ],
         ),
       ),
+      bottomNavigationBar: BottomHomeNavButton(),
     );
   }
 }
