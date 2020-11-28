@@ -1,5 +1,4 @@
 import 'package:admin_app_ui/productProvider/EditItems.dart';
-import 'package:admin_app_ui/productProvider/product_provider.dart';
 import 'package:admin_app_ui/screens/addService.dart';
 import 'package:admin_app_ui/services/firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -355,19 +354,19 @@ class _ClassicPackageState extends State<ClassicPackage> {
     switch (selectedIndex) {
       case 0:
         packageData.subPackage = 'classic';
-        ProductProvider().package = 'classic';
+        FirestoreService().subPackage = 'classic';
         break;
       case 1:
         packageData.subPackage = 'pre-BridalPackages';
-        ProductProvider().package = 'pre-BridalPackages';
+        FirestoreService().subPackage = 'pre-BridalPackages';
         break;
       case 2:
         packageData.subPackage = 'premiumPackages';
-        ProductProvider().package = 'premiumPackages';
+        FirestoreService().subPackage = 'premiumPackages';
         break;
       case 3:
         packageData.subPackage = 'FacialWaxingCombo';
-        ProductProvider().package = 'FacialWaxingCombo';
+        FirestoreService().subPackage = 'FacialWaxingCombo';
         break;
     }
   }
