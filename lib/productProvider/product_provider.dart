@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 class ProductProvider extends ChangeNotifier {
   final firestoreService = FirestoreService();
 
-  String package;
-  ProductProvider({this.package});
-  String _title;
+  String title;
   String _details;
   int _currentPrice;
   int _previousPrice;
@@ -15,7 +13,7 @@ class ProductProvider extends ChangeNotifier {
 
   //Getters
 
-  String get title => _title;
+  // String get title => _title;
   String get details => _details;
   int get currentPrice => _currentPrice;
   int get previousPrice => _previousPrice;
@@ -24,7 +22,7 @@ class ProductProvider extends ChangeNotifier {
   //setters
   changeTitle({String value}) {
     print('$value inside the method');
-    _title = value;
+    value = title;
     notifyListeners();
   }
 
@@ -53,9 +51,10 @@ class ProductProvider extends ChangeNotifier {
   }
 
   saveProduct() {
-    if (_title == null) {
+    print(title);
+    if (title == null) {
       var newProduct = Product(
-          title: title,
+          title: title.toString(),
           time: time.toString(),
           details: details,
           currentPrice: currentPrice.toString(),
@@ -65,7 +64,7 @@ class ProductProvider extends ChangeNotifier {
     //Update
     else {
       var updatedProduct = Product(
-          title: title,
+          title: title.toString(),
           time: time.toString(),
           details: details,
           currentPrice: currentPrice.toString(),

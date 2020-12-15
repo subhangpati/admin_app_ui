@@ -1,5 +1,7 @@
 import 'package:admin_app_ui/constants.dart';
+import 'package:admin_app_ui/model/product_model.dart';
 import 'package:admin_app_ui/productProvider/EditItems.dart';
+import 'package:admin_app_ui/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +16,7 @@ class addServicePage extends StatefulWidget {
   _addServicePageState createState() => _addServicePageState();
 }
 
-final _titleController = TextEditingController();
+TextEditingController _titleController = TextEditingController();
 
 // ignore: camel_case_types
 class _addServicePageState extends State<addServicePage> {
@@ -24,6 +26,7 @@ class _addServicePageState extends State<addServicePage> {
     super.initState();
   }
 
+  FirestoreService firestoreService = FirestoreService();
   @override
   Widget build(BuildContext context) {
     editItem = Provider.of<EditItems>(context);
@@ -64,8 +67,8 @@ class _addServicePageState extends State<addServicePage> {
                     child: TextFormField(
                       controller: _titleController,
                       onChanged: (value) {
-                        value1 = value;
-                        print('$value');
+                        value1 = _titleController.text;
+                        print('$value1');
                       },
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -157,8 +160,14 @@ class _addServicePageState extends State<addServicePage> {
             ),
             RaisedButton(
               onPressed: () {
-                ProductProvider().changeTitle(value: value1);
                 ProductProvider().saveProduct();
+                var newProduct = Product(
+                    title: _titleController.text,
+                    time: '',
+                    details: 'details',
+                    currentPrice: '',
+                    previousPrice: '');
+                firestoreService.saveProduct(product: newProduct);
               },
               child: Text('Send Data'),
             )

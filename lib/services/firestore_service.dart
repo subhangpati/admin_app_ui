@@ -1,11 +1,10 @@
 import 'package:admin_app_ui/model/product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 
-class FirestoreService with ChangeNotifier {
+class FirestoreService {
   String subPackage;
-  String package;
-  FirestoreService({this.package, this.subPackage});
+  String packages;
+  //FirestoreService({this.packages, this.subPackage});
 
   //Stream of services
   Stream<QuerySnapshot> getStreamServices() {
@@ -32,7 +31,7 @@ class FirestoreService with ChangeNotifier {
   //DELETE PACKAGE
   Future<void> removeProduct({String title}) {
     return FirebaseFirestore.instance
-        .collection('/services/$package/$subPackage')
+        .collection('/services/$packages/$subPackage')
         .doc(title)
         .delete();
   }
@@ -40,7 +39,7 @@ class FirestoreService with ChangeNotifier {
   // ADD PACKAGE
   Future<void> saveProduct({Product product}) {
     return FirebaseFirestore.instance
-        .collection('services/$package/$subPackage')
+        .collection('services/$packages/$subPackage')
         .doc(product.title)
         .set(product.toMap());
   }

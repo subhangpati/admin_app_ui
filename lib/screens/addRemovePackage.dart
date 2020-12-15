@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:admin_app_ui/components/navigation_bar.dart';
-import 'package:admin_app_ui/screens/EditPackage.dart';
-import 'package:admin_app_ui/constants.dart';
 import 'package:admin_app_ui/components/bottomBarIcons.dart';
+import 'package:admin_app_ui/components/navigation_bar.dart';
+import 'package:admin_app_ui/constants.dart';
 import 'package:admin_app_ui/screens/CreatePackage.dart';
+import 'package:admin_app_ui/screens/EditPackage.dart';
+import 'package:flutter/material.dart';
 
 class addRemovePackage extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class _addRemovePackageState extends State<addRemovePackage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar('Add Remove package'),
       body: Column(
         children: <Widget>[
           ListView.builder(
@@ -39,12 +39,15 @@ class _addRemovePackageState extends State<addRemovePackage> {
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             )),
-                        IconButton(icon: Icon(Icons.edit), onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => EditPackagepage()),
-                          );
-                        })
+                        IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditPackagepage()),
+                              );
+                            })
                       ]),
                 );
               }),
@@ -52,7 +55,7 @@ class _addRemovePackageState extends State<addRemovePackage> {
             child: Align(
               alignment: FractionalOffset.bottomCenter,
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => CreatePackage()),
@@ -61,12 +64,14 @@ class _addRemovePackageState extends State<addRemovePackage> {
                 child: Container(
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color(0xFF2E577B) ,
+                    color: Color(0xFF2E577B),
                   ),
-                  child: Center(child: Text('CREATE PACKAGE' , style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ))),
+                  child: Center(
+                      child: Text('CREATE PACKAGE',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ))),
                 ),
               ),
             ),
@@ -85,11 +90,9 @@ class _addRemovePackageState extends State<addRemovePackage> {
                 size: 35.0,
                 color: Colors.white,
               ),
-              on_Press: (){
+              on_Press: () {
                 Navigator.pop(context);
-              }
-          ),
-
+              }),
         ),
       ),
     );

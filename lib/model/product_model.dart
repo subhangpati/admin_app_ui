@@ -1,30 +1,31 @@
-import 'package:flutter/cupertino.dart';
+class Product {
+  final String details;
+  final String title;
+  final String currentPrice;
+  final String previousPrice;
+  final String time;
 
-class Product extends ChangeNotifier{
-  final String details ;
-  final String title ;
-  final String currentPrice ;
-  final String previousPrice ;
-  final String time ;
+  Product(
+      {this.details,
+      this.title,
+      this.currentPrice,
+      this.previousPrice,
+      this.time});
 
-  Product({this.details, this.title, this.currentPrice, this.previousPrice, this.time});
-
-
-  Map<String , dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
-      'details' : details,
-      'title': title ,
+      'details': details,
+      'title': title,
       'currentPrice': currentPrice,
       'previousPrice': previousPrice,
-      'time' : time
+      'time': time
     };
   }
+
   Product.fromFirestore(Map<String, dynamic> firestore)
       : details = firestore['details'],
         title = firestore['title'],
         previousPrice = firestore['previousPrice'],
-        time= firestore['time'],
+        time = firestore['time'],
         currentPrice = firestore['currentPrice'];
-
-
 }

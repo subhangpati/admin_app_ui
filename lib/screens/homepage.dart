@@ -1,15 +1,10 @@
+import 'package:admin_app_ui/components/body.dart';
 import 'package:admin_app_ui/components/navigation_bar.dart';
+import 'package:admin_app_ui/constants.dart';
+import 'package:admin_app_ui/screens/AddRemoveSliders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:admin_app_ui/components/body.dart';
-import 'package:admin_app_ui/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:admin_app_ui/components/bottomBarIcons.dart';
-import 'package:admin_app_ui/screens/addRemovePackage.dart';
-import 'package:admin_app_ui/screens/TimeManagement.dart';
-import 'package:admin_app_ui/screens/addService.dart';
-import 'package:admin_app_ui/screens/addRemoveServicesPage.dart';
-import 'package:admin_app_ui/screens/AddRemoveSliders.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -20,7 +15,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar('ADMIN DASHBOARD'),
       body: Body(),
       drawer: Drawer(
         child: ListView(
@@ -45,20 +40,20 @@ class _HomepageState extends State<Homepage> {
               label: 'Add/Remove Package',
               imageData: 'box.svg',
               press: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => addRemovePackage()));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => addRemovePackage()));
               },
             ),
-            sideBarMenuItems(
-              label: 'Add/Remove Services',
-              imageData: 'service.svg',
-              press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddService()));
-              },
-            ),
+            // sideBarMenuItems(
+            //   label: 'Add/Remove Services',
+            //   imageData: 'service.svg',
+            //   press: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => AddService()));
+            //   },
+            // ),
             sideBarMenuItems(
               label: 'Add/Remove Sliders',
               imageData: 'slider-tool.svg',
@@ -89,41 +84,45 @@ class _HomepageState extends State<Homepage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            bottom_nav_icons(
-              icons: Icon(
-                Icons.note_add,
-                size: 35.0,
-                color: Colors.white,
-              ),
-              on_Press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => addServicePage()));
-              },
-            ),
-            bottom_nav_icons(
-              icons: Icon(
-                Icons.home,
-                size: 35.0,
-                color: Colors.white,
-              ),
-            ),
-            bottom_nav_icons(
-              icons: Icon(
-                Icons.access_time,
-                size: 35.0,
-                color: Colors.white,
-              ),
-              on_Press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => timeManagement()));
-              },
-            ),
-            bottom_nav_icons(
-                icons: Icon(
-              Icons.perm_identity,
-              size: 35.0,
-              color: Colors.white,
-            ))
+            // bottom_nav_icons(
+            //   icons: Icon(
+            //     Icons.note_add,
+            //     size: 35.0,
+            //     color: Colors.white,
+            //   ),
+            //   on_Press: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => addServicePage()));
+            //   },
+            // ),
+            // bottom_nav_icons(
+            //   icons: Icon(
+            //     Icons.calendar_today_rounded,
+            //     size: 35.0,
+            //     color: Colors.white,
+            //   ),
+            //   on_Press: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => DateSelector()));
+            //   },
+            // ),
+            // bottom_nav_icons(
+            //   icons: Icon(
+            //     Icons.access_time,
+            //     size: 35.0,
+            //     color: Colors.white,
+            //   ),
+            //   on_Press: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => Appointment()));
+            //   },
+            // ),
+            // bottom_nav_icons(
+            //     icons: Icon(
+            //   Icons.perm_identity,
+            //   size: 35.0,
+            //   color: Colors.white,
+            // ))
           ],
         ),
       ),
